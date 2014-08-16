@@ -1,6 +1,9 @@
 {
   "run_list": [
-    "recipe[nginx]"
+    "recipe[nginx]",
+    "recipe[jenkins::java]",
+    "recipe[jenkins::master]",
+    "recipe[nodejs]"
   ],
   "automatic": {
     "ipaddress": "vagrant"
