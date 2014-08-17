@@ -1,0 +1,10 @@
+#!monit
+set logfile /var/log/monit.log
+
+check process nodejs with pidfile "/var/www/nodejs-project/hello-world/pids/app.pid"
+    start program = "/etc/init.d/nodeapp start"
+    stop program = "/etc/init.d/nodeapp stop"
+    if failed port 3000 protocol HTTP
+        request /rest
+        with timeout 10 seconds
+        then restart
