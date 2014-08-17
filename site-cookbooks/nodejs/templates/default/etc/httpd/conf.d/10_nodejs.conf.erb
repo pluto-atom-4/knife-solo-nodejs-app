@@ -1,0 +1,27 @@
+ProxyPass         /rest  http://localhost:3000/rest nocanon
+ProxyPassReverse  /rest  http://localhost:3000/rest
+ProxyRequests     Off
+#AllowEncodedSlashes NoDecode
+
+# Local reverse proxy authorization override
+# Most unix distribution deny proxy by default (ie /etc/apache2/mods-enabled/proxy.conf in Ubuntu)
+<Proxy http://localhost:3000/rest*>
+  Order deny,allow
+  Allow from all
+</Proxy>
+
+ProxyPass         /xml  http://localhost:3000/xml nocanon
+ProxyPassReverse  /xml  http://localhost:3000/xml
+
+<Proxy http://localhost:3000/xml*>
+  Order deny,allow
+  Allow from all
+</Proxy>
+
+ProxyPass         /static  http://localhost:3000/static nocanon
+ProxyPassReverse  /static  http://localhost:3000/static
+
+<Proxy http://localhost:3000/static*>
+  Order deny,allow
+  Allow from all
+</Proxy>

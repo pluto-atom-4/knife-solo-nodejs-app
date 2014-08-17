@@ -1,8 +1,6 @@
 {
   "run_list": [
-    "recipe[nginx]",
-    "recipe[jenkins::java]",
-    "recipe[jenkins::master]",
+    "recipe[yum-epel]",
     "recipe[nodejs]"
   ],
   "automatic": {
