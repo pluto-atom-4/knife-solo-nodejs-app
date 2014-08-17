@@ -29,4 +29,24 @@ bash "install-nodejs-package" do
   EOC
 end
 
+template "etc-init.d-nodeapp" do
+  path   "/etc/init.d/nodeapp"
+  source "etc/init.d/nodeapp.erb"
+  owner  "root"
+  group  "root"
+  mode   "0755"
+end
 
+directory "/var/www/nodejs-project/hello-world/pids" do
+  owner "root"
+  group "root"
+  mode "0755"
+  action :create
+end
+
+directory "/var/www/nodejs-project/hello-world/logs" do
+  owner "root"
+  group "root"
+  mode "0755"
+  action :create
+end
