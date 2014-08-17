@@ -14,10 +14,6 @@ package "npm" do
   action :install
 end
 
-package "httpd" do
-  action :install
-end
-
 git "/var/www/nodejs-project" do
    repository "https://github.com/pluto-atom-4/nodejs-project"
    reference "master"
@@ -26,10 +22,11 @@ git "/var/www/nodejs-project" do
    group "root"
 end
 
-template "10_nodejs.conf" do
-  path   "/etc/httpd/conf.d/10_nodejs.conf"
-  source "etc/httpd/conf.d/10_nodejs.conf.erb"
-  owner  "root"
-  group  "root"
-  mode 0644
+bash "install-nodejs-package" do
+  code <<-EOC
+    cd /var/www/nodejs-project/hello-world
+    npm install
+  EOC
 end
+
+

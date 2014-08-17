@@ -1,7 +1,8 @@
 {
   "run_list": [
     "recipe[yum-epel]",
-    "recipe[nodejs]"
+    "recipe[nodejs]",
+    "recipe[httpd]"
   ],
   "automatic": {
     "ipaddress": "vagrant"
